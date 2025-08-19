@@ -1,0 +1,38 @@
+{% if items %}
+<table class="w-full bg-white rounded-2xl shadow overflow-hidden">
+  <thead class="bg-gray-100 text-left text-sm">
+    <tr>
+      <th class="p-3">Product</th>
+      <th class="p-3">Price</th>
+      <th class="p-3">Qty</th>
+      <th class="p-3">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for it in items %}
+    <tr class="border-t">
+      <td class="p-3">
+        <div class="font-medium">{{ it.product.name }}</div>
+        <div class="text-xs text-gray-600">{{ it.product.description[:80] }}{% if it.product.description|length > 80 %}…{% endif %}</div>
+      </td>
+      <td class="p-3">{{ price(it.product.price_cents) }}</td>
+      <td class="p-3">
+        <form hx-post="/cart/update/{{ it.product.id }}" hx-target="#cart-table" hx-swap="outerHTML" class="flex items-center gap-2">
+          <input type="number" name="qty" value="{{ it.qty }}" min="0" class="w-16 border rounded-xl px-2 py-1">
+          <button class="px-3 py-1.5 rounded-xl border hover:bg-gray-50">Update</button>
+        </form>
+      </td>
+      <td class="p-3">{{ price(it.line_total) }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot class="bg-gray-100">
+    <tr>
+      <td class="p-3 font-semibold" colspan="3">Subtotal</td>
+      <td class="p-3 font-semibold">{{ price(subtotal) }}</td>
+    </tr>
+  </tfoot>
+</table>
+{% else %}
+<p class="text-gray-700">Your cart is empty.</p>
+{% endif %}

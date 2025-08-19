@@ -1,0 +1,4 @@
+{% set qty = cart_qty if cart_qty is not none else 0 %}
+<span class="inline-flex items-center justify-center min-w-6 h-6 text-xs font-semibold rounded-full border px-2">
+  {{ qty }}
+</span>

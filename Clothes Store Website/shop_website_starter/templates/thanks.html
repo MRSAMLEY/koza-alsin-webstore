@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bg-white rounded-2xl shadow p-8 text-center">
+  <h1 class="text-2xl font-bold">Thank you!</h1>
+  <p class="mt-2">Your order <span class="font-mono">#{{ order_id }}</span> was placed successfully.</p>
+  <p class="mt-2">Total paid: <strong>{{ price(total) }}</strong></p>
+  <a href="/" class="inline-block mt-6 px-4 py-2 rounded-xl border hover:bg-gray-50">Continue shopping</a>
+</div>
+{% endblock %}

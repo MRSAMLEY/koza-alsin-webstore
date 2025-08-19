@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title if title else "Shop" }}</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+    <script src="https://unpkg.com/alpinejs@3.14.1" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 text-gray-900">
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="/" class="font-bold text-xl">MyShop</a>
+        <nav class="flex items-center gap-4">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/admin" class="hover:underline">Admin</a>
+          <a href="/cart" class="relative inline-flex items-center gap-2">
+            <span>Cart</span>
+            <div id="cart-bubble" class="inline-block">
+              {% include "_cart_bubble.html" %}
+            </div>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="border-t">
+      <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600">
+        © {{ 2025 }} MyShop — Built with FastAPI + HTMX
+      </div>
+    </footer>
+  </body>
+</html>
